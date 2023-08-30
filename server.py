@@ -10,9 +10,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/version':
             self.send_response(HTTPStatus.OK)
-            self.send_header('Content-Type', 'application/json')
+            self.send_header('Content-Type', 'text/plain')
             self.end_headers()
-            self.wfile.write(('{"version":"%s"}' % sys.version).encode())
+            self.wfile.write(sys.version.encode())
             return
 
         full_file = curdir + sep + 'index.html'
